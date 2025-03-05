@@ -1,5 +1,6 @@
 # Project specific
 releases/
+release/
 processed_data/
 raw_data/
 parsed/
