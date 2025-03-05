@@ -1,3 +1,10 @@
+# Project specific
+releases/
+processed_data/
+raw_data/
+parsed/
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
