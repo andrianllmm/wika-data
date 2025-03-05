@@ -3,9 +3,9 @@ import bs4
 import json
 from datetime import datetime
 from pathlib import Path
-from utils.logger import logger
-from utils.fetch_page import fetch_page
-from utils.graceful_exit import on_exit
+from wikadata.utils.logger import logger
+from wikadata.utils.fetch_page import fetch_page
+from wikadata.utils.graceful_exit import on_exit
 
 
 SUPPORTED_LANGS = {

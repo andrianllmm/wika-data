@@ -1,8 +1,8 @@
 import requests
 from time import sleep
 from typing import Any
-from utils.logger import logger
-from utils.user_agents import get_random_user_agent
+from wikadata.utils.logger import logger
+from wikadata.utils.user_agents import get_random_user_agent
 
 
 def fetch_page(url: str, retries=0) -> bytes | Any:

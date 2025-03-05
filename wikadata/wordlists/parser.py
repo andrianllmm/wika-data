@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
-from utils.logger import logger
-from utils.graceful_exit import on_exit
+from wikadata.utils.logger import logger
+from wikadata.utils.graceful_exit import on_exit
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent

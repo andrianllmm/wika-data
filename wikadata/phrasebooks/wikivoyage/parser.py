@@ -3,8 +3,8 @@ import json
 import sys
 from bs4 import BeautifulSoup
 from pathlib import Path
-from utils.logger import logger
-from utils.graceful_exit import on_exit
+from wikadata.utils.logger import logger
+from wikadata.utils.graceful_exit import on_exit
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -16,7 +16,6 @@ def main():
     )
     argparser.add_argument(
         "input_file",
-        nargs="?",
         type=Path,
         help="Path to the input file.",
     )
