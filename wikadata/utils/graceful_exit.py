@@ -1,6 +1,6 @@
 import signal
 import sys
-from utils.logger import logger
+from wikadata.utils.logger import logger
 
 
 def on_exit(callback, message="Process interrupted. Exiting..."):

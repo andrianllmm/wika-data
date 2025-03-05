@@ -1,8 +1,8 @@
 import csv
 import sys
 from pathlib import Path
-from utils.logger import logger
-from utils.graceful_exit import on_exit
+from wikadata.utils.logger import logger
+from wikadata.utils.graceful_exit import on_exit
 
 csv.field_size_limit(sys.maxsize)
 

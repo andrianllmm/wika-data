@@ -6,8 +6,8 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 from html import unescape
 from itertools import repeat
-from utils.logger import logger
-from utils.graceful_exit import on_exit
+from wikadata.utils.logger import logger
+from wikadata.utils.graceful_exit import on_exit
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
