@@ -16,28 +16,38 @@ def main():
         description="Parse dictionary entries from a file scraped from Pinoy Dictionary."
     )
     argparser.add_argument(
-        "input_file",
+        "input_files",
+        nargs="*",
         type=Path,
-        help="Path to the input file.",
+        help="Paths to the input files.",
     )
     args = argparser.parse_args()
 
-    input_path = args.input_file
-    raw_data, meta = import_raw_data(input_path)
-    if not raw_data:
-        logger.error("No raw data available.")
-        sys.exit(1)
-
-    # Main data store
-    parsed_data: list[dict] = []
-
-    on_exit(
-        lambda: export_parsed_data(parsed_data, meta),
-        message="Process interrupted. Saving processed data...",
+    input_files = args.input_files
+    input_paths = (
+        input_files
+        if input_files
+        else [path for path in (SCRIPT_DIR / "scraped_data").glob("*.json")]
     )
 
-    parse(raw_data, parsed_data)
-    export_parsed_data(parsed_data, meta)
+    for input_path in input_paths:
+        logger.info(f"Processing file: {input_path}")
+
+        raw_data, meta = import_raw_data(input_path)
+        if not raw_data:
+            logger.error("No raw data available.")
+            sys.exit(1)
+
+        # Main data store
+        parsed_data: list[dict] = []
+
+        on_exit(
+            lambda: export_parsed_data(parsed_data, meta),
+            message="Process interrupted. Saving processed data...",
+        )
+
+        parse(raw_data, parsed_data)
+        export_parsed_data(parsed_data, meta)
 
 
 def parse(raw_data: list[dict], parsed_data: list[dict]) -> bool:
