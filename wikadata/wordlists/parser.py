@@ -1,4 +1,5 @@
 import json
+import unicodedata
 from pathlib import Path
 from wikadata.utils.logger import logger
 from wikadata.utils.graceful_exit import on_exit
@@ -32,7 +33,8 @@ def generate_wordlists(dictionaries_dir: Path, wordlists: dict[str, set[str]]) -
             wordlists.setdefault(lang, set())
 
             for entry in data["entries"]:
-                wordlists[lang].add(entry["word"])
+                normalized_word = strip_diacritics(entry["word"])
+                wordlists[lang].add(normalized_word)
 
     logger.info(f"Generated {len(wordlists)} word lists.")
     return True
@@ -55,6 +57,12 @@ def export_wordlists(wordlists: dict[str, set[str]]) -> bool:
 
     logger.info(f"Word lists successfully exported to {output_dir}.")
     return True
+
+
+def strip_diacritics(text: str) -> str:
+    return "".join(
+        c for c in unicodedata.normalize("NFD", text) if unicodedata.category(c) != "Mn"
+    )
 
 
 if __name__ == "__main__":
